@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * Created by Michael on 29/05/2016.
- */
+
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@courses")
 public class Department {

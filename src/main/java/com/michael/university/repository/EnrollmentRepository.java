@@ -11,9 +11,7 @@ import com.michael.university.domain.Student;
 
 import java.util.List;
 
-/**
- * Created by Michael on 30/05/2016.
- */
+
 @Repository
 public interface EnrollmentRepository extends JpaRepository<Enrollment,EnrollmentId> {
 

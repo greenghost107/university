@@ -8,9 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-/**
- * Created by Michael on 30/05/2016.
- */
+
 @Entity
 @IdClass(EnrollmentId.class)
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@student_id" )

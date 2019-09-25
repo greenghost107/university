@@ -1,22 +1,25 @@
 package com.michael.university.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.michael.university.domain.Course;
 import com.michael.university.domain.Enrollment;
-import com.michael.university.repository.EnrollmentRepository;
+import com.michael.university.domain.EnrollmentId;
+import com.michael.university.domain.Semester;
+import com.michael.university.domain.Student;
 
-@Service
-public class EnrollmentService {
-
-	 @Autowired
-	    EnrollmentRepository enrollmentRepository;
+public interface EnrollmentService {
 	
-	    public List<Enrollment> findAllEnrollments()
-	    {
-	        return enrollmentRepository.findAll();
-	    }
-	 
+	public List<Enrollment> findAllEnrollments();
+	
+	public Optional<Enrollment> findEnrollment(EnrollmentId enrollmentId);
+	
+	public List<Enrollment> findEnrollmentByStudent(Student student);
+	
+	public List<Enrollment> findEnrollmentByCourse(Course course);
+	
+	public List<Student> showRegisteredStudents(String courseName);
+	
+	public Optional<Enrollment> registerStudentToCourse(Long studentId, Long courseId, Semester semester);
 }

@@ -9,13 +9,11 @@ import com.michael.university.domain.Course;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by Michael on 30/05/2016.
- */
+
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
-    List<Course> findByName(String courseName);
+    Optional<Course> findByName(String courseName);
     Optional<Course> findById(Long id);
 
 }

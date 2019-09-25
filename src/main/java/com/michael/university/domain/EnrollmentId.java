@@ -2,9 +2,7 @@ package com.michael.university.domain;
 
 import java.io.Serializable;
 
-/**
- * Created by Michael on 02/06/2016.
- */
+
 
 public class EnrollmentId implements Serializable {
     private Long course_id;

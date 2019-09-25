@@ -3,9 +3,6 @@ package com.michael.university.domain;
 import java.util.List;
 import java.util.ListIterator;
 
-/**
- * Created by Michael on 06/06/2016.
- */
 public class BonusAverage implements AvgCalc {
 
     private long maxGrade;

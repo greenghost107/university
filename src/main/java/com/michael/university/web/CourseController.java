@@ -8,31 +8,32 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.michael.university.domain.Course;
+import com.michael.university.domain.Enrollment;
+import com.michael.university.domain.Semester;
+import com.michael.university.exceptions.CourseNotFoundException;
+import com.michael.university.exceptions.SpringException;
 import com.michael.university.repository.CourseRepository;
+import com.michael.university.service.CourseService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by Michael on 09/06/2016.
- */
+
 @RestController
 @RequestMapping("/courses")
 public class CourseController {
     private static final Logger log = LoggerFactory.getLogger(CourseController.class);
 
     @Autowired
-    CourseRepository courseRepository;
-
-    @Autowired
-    private servicesImpl serv;
+    private CourseService courseService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Course>> showAllCourses()
     {
         log.info("Started showAllCourses");
-        return Optional.ofNullable(serv.findAllCourses())
+        return Optional.ofNullable(courseService.findAllCourses())
                 .map(cour -> new ResponseEntity<>(cour, HttpStatus.OK))
                 .orElseThrow(() -> new SpringException("Course DataBase Is Empty"));
     }
@@ -42,7 +43,7 @@ public class CourseController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Course> showCourse(@PathVariable( "id" ) Long courseId )
     {
-        return Optional.ofNullable(courseRepository.findOne(courseId))
+        return courseService.findCourseById(courseId)
                 .map(stud -> new ResponseEntity<>(stud, HttpStatus.OK))
                 .orElseThrow(() -> new CourseNotFoundException(courseId));
     }
@@ -52,24 +53,24 @@ public class CourseController {
     public ResponseEntity<Course> addCourse(@RequestParam String courseName,@RequestParam String departmentName)
     {
 
-        return Optional.ofNullable(serv.addCourse(courseName,departmentName))
+        return courseService.addCourse(courseName,departmentName)
                 .map(stud -> new ResponseEntity<>(stud, HttpStatus.OK))
                 .orElseThrow(() -> new SpringException("Can't add" + courseName + " to " + departmentName));
 
     }
 
     @RequestMapping(value = "/{name}" , method = RequestMethod.DELETE)
-    public ResponseEntity<Boolean> deleteCourse(@PathVariable( "name" ) String courseName )
+    public ResponseEntity<Course> deleteCourse(@PathVariable( "name" ) String courseName )
     {
         log.info("delete course");
-        return new ResponseEntity<>(serv.deleteCourse(courseName), HttpStatus.OK);
+        return new ResponseEntity<>(courseService.deleteCourse(courseName), HttpStatus.OK);
 
     }
     @RequestMapping(value = "/update/{name}" ,method = RequestMethod.POST)
-    public ResponseEntity<Enrollment> updateStudentGrade(@PathVariable ( "name" )String courseName , @RequestHeader(value = "studentName") String studentName
+    public ResponseEntity<Enrollment> updateStudentGrade(@PathVariable ( "courseId" )Long courseId , @RequestHeader(value = "studentId") Long studentId
             , @RequestHeader(value = "semester") Semester semester, @RequestHeader Long grade)
     {
-        return Optional.ofNullable(serv.updateGrade(courseName,studentName,semester,grade))
+        return courseService.updateGrade(courseId,studentId,semester,grade)
                 .map(bool -> new ResponseEntity<>(bool, HttpStatus.OK))
                 .orElseThrow(() -> new SpringException("couldn't update grade"));
     }
