@@ -1,10 +1,11 @@
 package com.michael.university.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,7 +65,7 @@ public class DepartmentServiceImplTest {
         
         
         Department testDep = new Department("Test Department");
-        Mockito.when(departmentRepository.save(testDep)).thenReturn(testDep);
+        Mockito.when(departmentRepository.save(Mockito.any(Department.class))).thenReturn(testDep);
 //        Mockito.when(departmentRepository.findByName(computer_science.getName()))
 //          .thenReturn(Optional.of(computer_science));
     }
