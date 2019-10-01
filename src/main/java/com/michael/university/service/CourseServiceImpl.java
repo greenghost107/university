@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.michael.university.domain.Course;
 import com.michael.university.domain.Enrollment;
 import com.michael.university.domain.EnrollmentId;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.domain.Student;
 import com.michael.university.repository.CourseRepository;
 
@@ -121,7 +121,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, Semester semester, Long grade) {
+	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, SEMESTER semester, Long grade) {
 		EnrollmentId enrollmentId = new EnrollmentId(courseId,studentId,semester);
 		return enrollmentService.findEnrollment(enrollmentId);
 	}

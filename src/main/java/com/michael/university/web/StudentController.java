@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.domain.Student;
 import com.michael.university.exceptions.SpringException;
 import com.michael.university.exceptions.StudentNotFoundException;
@@ -71,7 +71,7 @@ public class StudentController {
 	
 	@RequestMapping(value = "/{studentId}/{courseId}/{semester}", method = RequestMethod.POST)
 	public ResponseEntity<Enrollment> updateStudentGrade(@PathVariable("studentId") Long studentId,
-			@PathVariable(value = "courseId") Long courseId, @PathVariable(value = "semester") Semester semester,
+			@PathVariable(value = "courseId") Long courseId, @PathVariable(value = "semester") SEMESTER semester,
 			@RequestBody Long grade) {
 		return studentService.updateGrade(courseId, studentId, semester, grade)
 				.map(bool -> new ResponseEntity<>(bool, HttpStatus.OK))

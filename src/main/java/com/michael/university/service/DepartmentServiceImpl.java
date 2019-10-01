@@ -71,7 +71,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public Optional<Department> addDepartment(String departmentName) {
 		Department department = new Department(departmentName);
-		
 		return Optional.of(departmentrepository.save(department));
 	}
 	

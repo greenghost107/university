@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.michael.university.domain.Course;
 import com.michael.university.domain.Enrollment;
 import com.michael.university.domain.EnrollmentId;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.domain.Student;
 
 public interface EnrollmentService {
@@ -21,5 +21,5 @@ public interface EnrollmentService {
 	
 	public List<Student> showRegisteredStudents(String courseName);
 	
-	public Optional<Enrollment> registerStudentToCourse(Long studentId, Long courseId, Semester semester);
+	public Optional<Enrollment> registerStudentToCourse(Long studentId, Long courseId, SEMESTER semester);
 }

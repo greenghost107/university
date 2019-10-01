@@ -1,7 +1,7 @@
 package com.michael.university.domain;
 
 
-public enum Semester {
+public enum SEMESTER {
     A, B, SUMMER;
 
 

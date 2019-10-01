@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.michael.university.domain.Course;
 import com.michael.university.domain.Enrollment;
 import com.michael.university.domain.EnrollmentId;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.domain.Student;
 
 import net.bytebuddy.asm.Advice.This;
@@ -30,7 +30,7 @@ public class GradeServiceImpl implements GradeService {
 	private EnrollmentService enrollmentService;
 	
 	@Transactional
-	public Optional<Enrollment> updateGrade(String courseName, Long studentId, Semester enrollment_semester, Long newGrade) {
+	public Optional<Enrollment> updateGrade(String courseName, Long studentId, SEMESTER enrollment_semester, Long newGrade) {
 		// Update student grades
 		// Long course_id = courserepository.findByName(courseName).get(0).getId();
 		Optional<Course> optCourse = courseService.findCourseByName(courseName);
@@ -39,7 +39,7 @@ public class GradeServiceImpl implements GradeService {
 		// Long student_id = studentRepository.findByName(studentName).get(0).getId();
 		Optional<Student> optStudent = studentService.findStudentById(studentId);
 		Long student_id = (optStudent.isPresent() ? optStudent.get().getId(): -1);
-		Semester semester = enrollment_semester;
+		SEMESTER semester = enrollment_semester;
 		if (student_id == -1|| course_id == -1 ) {
 			log.error("Wasn't able to updateGrade, Couldn't find Student/Course");
 			return Optional.empty();
@@ -55,7 +55,7 @@ public class GradeServiceImpl implements GradeService {
 		Enrollment enrollment = optEnrollment.get();
 		Course course = enrollment.getCourse();
 		Student student = enrollment.getStudent();
-		Semester sem = enrollment.getSemester();
+		SEMESTER sem = enrollment.getSemester();
 		enrollment.setGrade(newGrade);
 		log.info("course name: " + course.getName() + " Student name " + student.getName() + " Semester is " + sem + " new Grade is "
 				+ enrollment.getGrade());
@@ -75,7 +75,7 @@ public class GradeServiceImpl implements GradeService {
 		Enrollment enrollment = optEnrollment.get();
 		Course course = enrollment.getCourse();
 		Student student = enrollment.getStudent();
-		Semester sem = enrollment.getSemester();
+		SEMESTER sem = enrollment.getSemester();
 		enrollment.setGrade(newGrade);
 		System.out.println("course name: " + course.getName() + " Student name " + student.getName() + " Semester is " + sem
 				+ " new Grade is " + enrollment.getGrade());
@@ -83,7 +83,7 @@ public class GradeServiceImpl implements GradeService {
 	}
 	
 	@Transactional
-	    public Enrollment updateGradeEnrollment(Long studentId, String courseName, Semester semester, Long grade)
+	    public Enrollment updateGradeEnrollment(Long studentId, String courseName, SEMESTER semester, Long grade)
 	    {
 //	        List<Student> student_list = studentRepository.findByName(studentName);
 //	        if (student_list.size()<1){

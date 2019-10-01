@@ -12,6 +12,7 @@ import javax.validation.constraints.Min;
 @Entity
 @IdClass(EnrollmentId.class)
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@student_id" )
+@Table(name="enrollment") 
 public class Enrollment {
 
     @Id
@@ -22,7 +23,7 @@ public class Enrollment {
 
     @Id
     @Enumerated(EnumType.STRING)
-    private Semester semester;
+    private SEMESTER semester;
 
     //@Id
     @JsonBackReference
@@ -45,7 +46,7 @@ public class Enrollment {
 
     public Enrollment() {}
 
-    public Enrollment(Student student, Course course, Semester semester,Long grade)
+    public Enrollment(Student student, Course course, SEMESTER semester,Long grade)
     {
         this.student_id = student.getId();
         this.course_id = course.getId();
@@ -88,11 +89,11 @@ public class Enrollment {
         this.student = student;
     }
 
-    public Semester getSemester() {
+    public SEMESTER getSemester() {
         return semester;
     }
 
-    public void setSemester(Semester semester) {
+    public void setSemester(SEMESTER semester) {
         this.semester = semester;
     }
 

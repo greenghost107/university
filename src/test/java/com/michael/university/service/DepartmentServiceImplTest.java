@@ -71,7 +71,7 @@ public class DepartmentServiceImplTest {
     }
     
     @Test
-    public void whenValidName_thenEmployeeShouldBeFound() {
+    public void whenValidName_thenDepartmentShouldBeFound() {
         String dep_name = "Computer Science";
         Optional<Department> found = departmentService.findDepartmentByName(dep_name);
       

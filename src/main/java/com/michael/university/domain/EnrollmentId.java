@@ -7,11 +7,11 @@ import java.io.Serializable;
 public class EnrollmentId implements Serializable {
     private Long course_id;
     private Long student_id;
-    private Semester semester;
+    private SEMESTER semester;
 
     public EnrollmentId(){}
 
-    public EnrollmentId(Long course_id, Long student_id, Semester semester) {
+    public EnrollmentId(Long course_id, Long student_id, SEMESTER semester) {
             this.course_id = course_id;
             this.student_id = student_id;
             this.semester = semester;
@@ -33,11 +33,11 @@ public class EnrollmentId implements Serializable {
         this.student_id = student_id;
     }
 
-    public Semester getSemester() {
+    public SEMESTER getSemester() {
         return semester;
     }
 
-    public void setSemester(Semester semester) {
+    public void setSemester(SEMESTER semester) {
         this.semester = semester;
     }
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.michael.university.domain.Course;
 import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.exceptions.CourseNotFoundException;
 import com.michael.university.exceptions.SpringException;
 import com.michael.university.repository.CourseRepository;
@@ -68,7 +68,7 @@ public class CourseController {
     }
     @RequestMapping(value = "/update/{name}" ,method = RequestMethod.POST)
     public ResponseEntity<Enrollment> updateStudentGrade(@PathVariable ( "courseId" )Long courseId , @RequestHeader(value = "studentId") Long studentId
-            , @RequestHeader(value = "semester") Semester semester, @RequestHeader Long grade)
+            , @RequestHeader(value = "semester") SEMESTER semester, @RequestHeader Long grade)
     {
         return courseService.updateGrade(courseId,studentId,semester,grade)
                 .map(bool -> new ResponseEntity<>(bool, HttpStatus.OK))

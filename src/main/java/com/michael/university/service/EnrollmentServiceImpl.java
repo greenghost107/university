@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.michael.university.domain.Course;
 import com.michael.university.domain.Enrollment;
 import com.michael.university.domain.EnrollmentId;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.domain.Student;
 import com.michael.university.repository.EnrollmentRepository;
 
@@ -20,6 +20,7 @@ import net.bytebuddy.asm.Advice.This;
 @Service
 public class EnrollmentServiceImpl implements EnrollmentService {
 	private static final Logger log = LoggerFactory.getLogger(This.class);
+	
 	@Autowired
 	private EnrollmentRepository enrollmentRepository;
 	
@@ -40,8 +41,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	
 	@Override
 	public List<Enrollment> findEnrollmentByStudent(Student student) {
-		// TODO Auto-generated method stub
-		return null;
+		return enrollmentRepository.findByStudent(student);
 	}
 	
 	@Override
@@ -57,7 +57,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	}
 
 	@Override
-	public Optional<Enrollment> registerStudentToCourse(Long studentId, Long courseId, Semester semester) {
+	public Optional<Enrollment> registerStudentToCourse(Long studentId, Long courseId, SEMESTER semester) {
 		Optional<Student> optStudent = studentService.findStudentById(studentId);
 		Optional<Course> optCourse = courseService.findCourseById(courseId);
 		if (!optStudent.isPresent() || !optCourse.isPresent()) {

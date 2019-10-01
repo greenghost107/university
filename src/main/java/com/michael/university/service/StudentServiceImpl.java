@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.michael.university.domain.Course;
 import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.domain.Student;
 import com.michael.university.repository.StudentRepository;
 
@@ -132,7 +132,7 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, Semester enrollment_semester, Long newGrade) {
+	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, SEMESTER enrollment_semester, Long newGrade) {
 		// TODO Auto-generated method stub
 		return null;
 	}

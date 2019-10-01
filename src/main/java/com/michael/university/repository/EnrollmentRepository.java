@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface EnrollmentRepository extends JpaRepository<Enrollment,EnrollmentId> {
 
-    List<Enrollment> findByCourse(Course course);
+    List<Enrollment> findByCourseName(Course course);
     List<Enrollment> findByStudent(Student student);
 
 

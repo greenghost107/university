@@ -2,7 +2,7 @@ package com.michael.university.web;
 
 
 import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.domain.Student;
 import com.michael.university.exceptions.SpringException;
 import com.michael.university.service.EnrollmentService;
@@ -48,7 +48,7 @@ public class EnrollmentController {
 	}
 	
 	@RequestMapping(value="/new", method = RequestMethod.POST)
-	public ResponseEntity<Enrollment> registerStudentToCourse(@RequestParam("studentId") Long studentId, @RequestParam("courseId") Long courseId,@RequestParam("semester") Semester semester)
+	public ResponseEntity<Enrollment> registerStudentToCourse(@RequestParam("studentId") Long studentId, @RequestParam("courseId") Long courseId,@RequestParam("semester") SEMESTER semester)
 	{
 		return enrollmentService.registerStudentToCourse(studentId, courseId, semester)
 				.map(enr-> new ResponseEntity<>(enr,HttpStatus.OK)).orElseThrow(()->new SpringException("Couldn't Register student with id: " + studentId +" to course with id: " + courseId +" in semester " + semester));

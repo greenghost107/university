@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.Semester;
+import com.michael.university.domain.SEMESTER;
 import com.michael.university.domain.Student;
 
 public interface StudentService {
@@ -21,5 +21,5 @@ public interface StudentService {
 	
 	public Student deleteStudentById(Long studentId);
 	
-	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, Semester enrollment_semester, Long newGrade);
+	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, SEMESTER enrollment_semester, Long newGrade);
 }
