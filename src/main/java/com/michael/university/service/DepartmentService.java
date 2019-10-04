@@ -3,7 +3,7 @@ package com.michael.university.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.michael.university.domain.Department;
+import com.michael.university.model.Department;
 
 public interface DepartmentService {
 	

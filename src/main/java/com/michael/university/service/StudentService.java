@@ -3,9 +3,9 @@ package com.michael.university.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.SEMESTER;
-import com.michael.university.domain.Student;
+import com.michael.university.model.Enrollment;
+import com.michael.university.model.SEMESTER;
+import com.michael.university.model.Student;
 
 public interface StudentService {
 	
@@ -21,5 +21,7 @@ public interface StudentService {
 	
 	public Student deleteStudentById(Long studentId);
 	
-	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, SEMESTER enrollment_semester, Long newGrade);
+	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, SEMESTER semester, Long newGrade);
+	
+	
 }

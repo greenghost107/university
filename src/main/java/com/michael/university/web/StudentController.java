@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.SEMESTER;
-import com.michael.university.domain.Student;
 import com.michael.university.exceptions.SpringException;
 import com.michael.university.exceptions.StudentNotFoundException;
+import com.michael.university.model.Enrollment;
+import com.michael.university.model.SEMESTER;
+import com.michael.university.model.Student;
 import com.michael.university.service.StudentService;
 
 import io.swagger.annotations.ApiParam;
@@ -49,6 +49,7 @@ public class StudentController {
 				.map(stud -> new ResponseEntity<>(stud, HttpStatus.OK))
 				.orElseThrow(() -> new SpringException("Can't add Student"));
 	}
+	
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Student> showStudentByID(@PathVariable("id") Long studentId) {

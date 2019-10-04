@@ -1,6 +1,7 @@
 package com.michael.university.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -25,11 +26,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.michael.university.domain.Course;
-import com.michael.university.domain.Department;
-import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.SEMESTER;
-import com.michael.university.domain.Student;
+import com.michael.university.model.Course;
+import com.michael.university.model.Department;
+import com.michael.university.model.Enrollment;
+import com.michael.university.model.SEMESTER;
+import com.michael.university.model.Student;
 import com.michael.university.repository.EnrollmentRepository;
 
 @RunWith(SpringRunner.class)
@@ -83,7 +84,10 @@ public class EnrollmentServiceImplTest {
 			Course course = new Course(courseNameList.get(i),department);
 			Enrollment enrollment = new Enrollment(student,course,SEMESTER.A,null);
 			enrollmentList.add(enrollment);
-		}
+			List<Enrollment> enrollmentlst = new ArrayList<>();
+			enrollmentlst.add(enrollment);
+			Mockito.when(enrollmentRepository.findByStudent(student)).thenReturn(enrollmentlst);		
+			}
     	
     	Mockito.when(enrollmentRepository.findAll()).thenReturn(enrollmentList);
 	
@@ -122,10 +126,13 @@ public class EnrollmentServiceImplTest {
 	@Test
 	public void whenFindEnrollmentByStudent_thenAllEnrollmentsForStudent()
 	{
+		
 		for(Enrollment enrollment : enrollmentList)
 		{
 			List<Enrollment> enrollmentlst = enrollmentService.findEnrollmentByStudent(enrollment.getStudent());
-			//TODO - write logics
+			assertEquals(enrollmentlst.size(),1);
+			assertNotNull(enrollment.getStudent());
+			assertNotNull(enrollment.getCourse());
 //			assertEquals(enrollmentlst.size(), Math.min(courseNameList.size(),studentNamesList.size()));
 		}
 		

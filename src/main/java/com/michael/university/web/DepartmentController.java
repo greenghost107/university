@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.michael.university.domain.Course;
-import com.michael.university.domain.Department;
 import com.michael.university.exceptions.SpringException;
+import com.michael.university.model.Course;
+import com.michael.university.model.Department;
 import com.michael.university.service.DepartmentService;
 
 import net.bytebuddy.asm.Advice.This;

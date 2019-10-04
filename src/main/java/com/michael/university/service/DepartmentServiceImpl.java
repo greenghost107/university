@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.michael.university.domain.AvgCalc;
-import com.michael.university.domain.BonusAverage;
-import com.michael.university.domain.Course;
-import com.michael.university.domain.Department;
+import com.michael.university.model.AvgCalc;
+import com.michael.university.model.BonusAverage;
+import com.michael.university.model.Course;
+import com.michael.university.model.Department;
 import com.michael.university.repository.DepartmentRepository;
 
 import net.bytebuddy.asm.Advice.This;

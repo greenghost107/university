@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.michael.university.domain.Course;
-import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.EnrollmentId;
-import com.michael.university.domain.SEMESTER;
-import com.michael.university.domain.Student;
+import com.michael.university.model.Course;
+import com.michael.university.model.Enrollment;
+import com.michael.university.model.EnrollmentId;
+import com.michael.university.model.SEMESTER;
+import com.michael.university.model.Student;
 
 import net.bytebuddy.asm.Advice.This;
 

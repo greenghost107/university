@@ -1,4 +1,4 @@
-package com.michael.university.domain;
+package com.michael.university.model;
 
 import java.util.List;
 import java.util.ListIterator;

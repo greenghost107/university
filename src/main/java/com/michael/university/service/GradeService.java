@@ -2,8 +2,8 @@ package com.michael.university.service;
 
 import java.util.Optional;
 
-import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.SEMESTER;
+import com.michael.university.model.Enrollment;
+import com.michael.university.model.SEMESTER;
 
 
 public interface GradeService {

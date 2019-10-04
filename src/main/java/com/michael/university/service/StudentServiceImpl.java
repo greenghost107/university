@@ -10,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.michael.university.domain.Course;
-import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.SEMESTER;
-import com.michael.university.domain.Student;
+import com.michael.university.model.Course;
+import com.michael.university.model.Enrollment;
+import com.michael.university.model.EnrollmentId;
+import com.michael.university.model.SEMESTER;
+import com.michael.university.model.Student;
 import com.michael.university.repository.StudentRepository;
 
 import net.bytebuddy.asm.Advice.This;
@@ -35,6 +36,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private GradeService gradeService;
 	
+	
 	public List<Student> findAllStudents() {
 		log.trace("Started findAllStudents");
 		return studentRepository.findAll();
@@ -42,13 +44,6 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Transactional
 	public List<Student> findStudentByName(String studentName) {
-		// List<Student> list_students = studentRepository.findByName(studentName);
-		// if (list_students.size()==0)
-		// {
-		// System.out.println("Couldn't find student with name " + studentName);
-		// return null;
-		// }
-		// return list_students.get(0);
 		return studentRepository.findByName(studentName);
 		
 	}
@@ -84,13 +79,6 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Transactional
 	public Student deleteStudentById(Long studentId) {
-		// List<Student> student_list = studentRepository.findByName(studentName);
-		// if (student_list.size()==0)
-		// {
-		// System.out.println("No Student with this name");
-		// return null;
-		// }
-		// Student student = student_list.get(0);
 		Optional<Student> optStudent = studentRepository.findById(studentId);
 		if (!optStudent.isPresent()) {
 			log.error("No Student with this name");
@@ -105,12 +93,6 @@ public class StudentServiceImpl implements StudentService {
 	@Transactional
 	public List<Student> showRegisteredStudents(String courseName) {
 		Optional<Course> optCourse = courseService.findCourseByName(courseName);
-//		List<Course> course_list = courserepository.findByName(courseName);
-//		if (course_list.size() == 0) {
-//			System.out.println("No course with the name: " + courseName + " In the database");
-//			return null;
-//		}
-//		Course course = course_list.get(0);
 		if (!optCourse.isPresent())
 		{
 			log.error("No course with the name: " + courseName + " In the database");
@@ -120,11 +102,8 @@ public class StudentServiceImpl implements StudentService {
 		List<Enrollment> enrollment_list = enrollmentService.findEnrollmentByCourse(course);
 		List<Student> newList = new ArrayList<Student>();
 		
-		// System.out.println("Course " + courseName + " has the following students ");
 		for (Enrollment enrollment : enrollment_list) {
 			newList.add(enrollment.getStudent());
-			// System.out.println(enrollment.getCourse().getName() + " " +
-			// enrollment.getStudent().getName());
 		}
 		
 		return newList;
@@ -132,8 +111,15 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, SEMESTER enrollment_semester, Long newGrade) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<Enrollment> updateGrade(Long courseId, Long studentId, SEMESTER semester, Long newGrade) {
+		EnrollmentId enrollmentId = new EnrollmentId(courseId, studentId, semester);
+		Optional<Enrollment> optEnrollment = enrollmentService.findEnrollment(enrollmentId);
+		if (!optEnrollment.isPresent())
+		{
+			log.error("Couldn't find enrollment for the specified studentId: " + studentId + " courseId: " + courseId +" semester: " + semester);
+			return optEnrollment;
+		}
 	}
+
+	
 }

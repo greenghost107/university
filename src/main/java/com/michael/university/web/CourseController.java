@@ -8,11 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.michael.university.domain.Course;
-import com.michael.university.domain.Enrollment;
-import com.michael.university.domain.SEMESTER;
 import com.michael.university.exceptions.CourseNotFoundException;
 import com.michael.university.exceptions.SpringException;
+import com.michael.university.model.Course;
+import com.michael.university.model.Enrollment;
+import com.michael.university.model.SEMESTER;
 import com.michael.university.repository.CourseRepository;
 import com.michael.university.service.CourseService;
 

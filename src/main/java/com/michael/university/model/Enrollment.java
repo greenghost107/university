@@ -1,4 +1,4 @@
-package com.michael.university.domain;
+package com.michael.university.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
