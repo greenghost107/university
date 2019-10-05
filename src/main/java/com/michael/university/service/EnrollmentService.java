@@ -19,9 +19,11 @@ public interface EnrollmentService {
 	
 	public List<Enrollment> findEnrollmentByCourse(Course course);
 	
-	public List<Enrollment> showRegisteredStudents(Long courseId);
+	public List<Student> showRegisteredStudentsToCourse(Long courseId);
 	
 	public Optional<Enrollment> registerStudentToCourse(Long studentId, Long courseId, SEMESTER semester);
+	
+	public Enrollment updateEnrollmentGrade(Enrollment enrollment);
 	
 //	public Optional<Enrollment> findEnrollmentByCourseIdAndStudentId(Long studentId, Long courseId, SEMESTER semester);
 }

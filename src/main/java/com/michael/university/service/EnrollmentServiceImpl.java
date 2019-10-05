@@ -1,5 +1,6 @@
 package com.michael.university.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -51,14 +52,27 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	}
 	
 	@Override
-	public List<Enrollment> showRegisteredStudents(Long courseId) {
+	public List<Student> showRegisteredStudentsToCourse(Long courseId) {
 		Optional<Course> optCourse = courseService.findCourseById(courseId);
 		if (!optCourse.isPresent())
 		{
 			log.error("Couldn't find course with id: " + courseId);
 			return Collections.emptyList();
 		}
-		return findEnrollmentByCourse(optCourse.get());
+		List<Enrollment> enrollmentList = findEnrollmentByCourse(optCourse.get());
+		
+		if (enrollmentList.isEmpty())
+		{
+			log.error("Couldn't Enrollments for course: " + courseId);
+			return Collections.emptyList();
+		}
+		List<Student> returnedStudentList = new ArrayList<>();
+		for(Enrollment enrollment:enrollmentList)
+		{
+			returnedStudentList.add(enrollment.getStudent());
+		}
+		return returnedStudentList;
+		
 	}
 	
 	@Override
@@ -71,9 +85,20 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 		}
 		
 		Enrollment enrollment = new Enrollment(optStudent.get(), optCourse.get(), semester, null);
-		enrollment = enrollmentRepository.save(enrollment);
+		enrollment = saveEnrollment(enrollment);
 		return Optional.of(enrollment);
 		
+	}
+	
+	@Override
+	public Enrollment updateEnrollmentGrade(Enrollment enrollment)
+	{
+		return saveEnrollment(enrollment);
+	}
+	
+	private Enrollment saveEnrollment(Enrollment enrollment)
+	{
+		return enrollmentRepository.save(enrollment);
 	}
 
 //	@Override

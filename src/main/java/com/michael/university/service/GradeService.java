@@ -10,4 +10,5 @@ public interface GradeService {
 	
 	public Optional<Enrollment> updateGrade(String courseName, Long studentId, SEMESTER enrollment_semester, Long newGrade);
 	
+	public Enrollment updateGradeByEnrollment(Enrollment enrollment, Long newGrade);
 }

@@ -18,6 +18,7 @@ import com.michael.university.exceptions.SpringException;
 import com.michael.university.model.Enrollment;
 import com.michael.university.model.EnrollmentId;
 import com.michael.university.model.SEMESTER;
+import com.michael.university.model.Student;
 import com.michael.university.service.EnrollmentService;
 
 import net.bytebuddy.asm.Advice.This;
@@ -42,8 +43,8 @@ public class EnrollmentController {
 	}
 	
 	@RequestMapping(value = "/{courseId}", method = RequestMethod.GET)
-	public ResponseEntity<List<Enrollment>> showRegisteredStudentsToCourse(@PathVariable("courseId") Long courseId) {
-		return Optional.ofNullable(enrollmentService.showRegisteredStudents(courseId))
+	public ResponseEntity<List<Student>> showRegisteredStudentsToCourse(@PathVariable("courseId") Long courseId) {
+		return Optional.ofNullable(enrollmentService.showRegisteredStudentsToCourse(courseId))
 				.map(stud -> new ResponseEntity<>(stud, HttpStatus.OK))
 				.orElseThrow(() -> new SpringException("No course with the id: " + courseId + " was found"));
 	}

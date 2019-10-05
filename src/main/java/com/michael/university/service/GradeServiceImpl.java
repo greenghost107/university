@@ -124,4 +124,10 @@ public class GradeServiceImpl implements GradeService {
 	        return enrollment;
 
 	    }
+
+	@Override
+	public Enrollment updateGradeByEnrollment(Enrollment enrollment, Long newGrade) {
+		enrollment.setGrade(newGrade);
+		return enrollmentService.updateEnrollmentGrade(enrollment);
+	}
 }

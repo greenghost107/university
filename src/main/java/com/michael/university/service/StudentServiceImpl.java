@@ -119,6 +119,7 @@ public class StudentServiceImpl implements StudentService {
 			log.error("Couldn't find enrollment for the specified studentId: " + studentId + " courseId: " + courseId +" semester: " + semester);
 			return optEnrollment;
 		}
+		return Optional.of(gradeService.updateGradeByEnrollment(optEnrollment.get(), newGrade));
 	}
 
 	
